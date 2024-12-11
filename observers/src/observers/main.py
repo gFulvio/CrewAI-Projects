@@ -2,7 +2,7 @@
 import sys
 import warnings
 
-from latest_ai_development.crew import LatestAiDevelopment
+from observers.crew import Observers
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -16,9 +16,30 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs'
+        'scene': {
+            'user': {
+                'position': '(0,0,0)',
+                'target': 'plate',
+                'movement': 'Pick',
+                'action': 'Use'
+            },
+            'plate': {
+                'position': '(0.5, 0.6, 0.5)',
+                'QDC': 'touch',
+                'QTC': 'stationary',
+                'MOS': 'stationary',
+                'HOLD': 'no'
+            },
+            'glass': {
+                'position': '(2, 0.6, 2)',
+                'QDC': 'far',
+                'QTC': 'stationary',
+                'MOS': 'stationary',
+                'HOLD': 'no',
+            }
+        }
     }
-    LatestAiDevelopment().crew().kickoff(inputs=inputs)
+    Observers().crew().kickoff(inputs=inputs)
 
 
 def train():
@@ -29,7 +50,7 @@ def train():
         "topic": "AI LLMs"
     }
     try:
-        LatestAiDevelopment().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        Observers().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while training the crew: {e}")
@@ -39,7 +60,7 @@ def replay():
     Replay the crew execution from a specific task.
     """
     try:
-        LatestAiDevelopment().crew().replay(task_id=sys.argv[1])
+        Observers().crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -52,7 +73,7 @@ def test():
         "topic": "AI LLMs"
     }
     try:
-        LatestAiDevelopment().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+        Observers().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")

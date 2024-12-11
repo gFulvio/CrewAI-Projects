@@ -1,0 +1,7 @@
+environment_description:
+  description: >
+    Create a scene description based only on {scene} 
+  expected_output: >
+    A description of the scene with the user as protagonist. It indicates which objects are present
+    and with which the user is interacting considering those data: {scene}.
+  agent: observer
