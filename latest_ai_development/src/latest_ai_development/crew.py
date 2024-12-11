@@ -17,34 +17,47 @@ class LatestAiDevelopment():
 
 	# If you would like to add tools to your agents, you can learn more about it here:
 	# https://docs.crewai.com/concepts/agents#agent-tools
-	@agent
-	def researcher(self) -> Agent:
-		return Agent(
-			config=self.agents_config['researcher'],
-			verbose=True
-		)
+	#@agent
+	#def researcher(self) -> Agent:
+	#	return Agent(
+	#		config=self.agents_config['researcher'],
+	#		verbose=True
+	#	)
 
+	#@agent
+	#def reporting_analyst(self) -> Agent:
+	#	return Agent(
+	#		config=self.agents_config['reporting_analyst'],
+	#		verbose=True
+	#	)
+  
 	@agent
-	def reporting_analyst(self) -> Agent:
+	def observer(self) -> Agent:
 		return Agent(
-			config=self.agents_config['reporting_analyst'],
+			config=self.agents_config['observer'],
 			verbose=True
 		)
 
 	# To learn more about structured task outputs, 
 	# task dependencies, and task callbacks, check out the documentation:
 	# https://docs.crewai.com/concepts/tasks#overview-of-a-task
-	@task
-	def research_task(self) -> Task:
-		return Task(
-			config=self.tasks_config['research_task'],
-		)
+	#@task
+	#def research_task(self) -> Task:
+	#	return Task(
+	#		config=self.tasks_config['research_task'],
+	#	)
 
+	#@task
+	#def reporting_task(self) -> Task:
+	#	return Task(
+	#		config=self.tasks_config['reporting_task'],
+	#		output_file='report.md'
+	#	)
+  
 	@task
-	def reporting_task(self) -> Task:
+	def environment_description(self) -> Task:
 		return Task(
-			config=self.tasks_config['reporting_task'],
-			output_file='report.md'
+			config=self.tasks_config['environment_description'],
 		)
 
 	@crew

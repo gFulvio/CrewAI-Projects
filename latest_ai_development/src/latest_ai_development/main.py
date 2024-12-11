@@ -16,7 +16,23 @@ def run():
     Run the crew.
     """
     inputs = {
-        'topic': 'AI LLMs'
+        [
+        'User': '(0,0,0)',
+        'Plate': [
+            'position': '(0.5, 0.6, 0.5)',
+            'QDC': 'touch'
+            'QTC': 'stationary',
+            'MOS': 'stationary',
+            'HOLD': 'no',
+            ],
+        'Glass': [
+            'position': '(2, 0.6, 2)',
+            'QDC': 'touch'
+            'QTC': 'stationary',
+            'MOS': 'stationary',
+            'HOLD': 'no',
+            ]
+        ]    
     }
     LatestAiDevelopment().crew().kickoff(inputs=inputs)
 

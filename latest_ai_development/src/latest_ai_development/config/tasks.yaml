@@ -15,3 +15,12 @@ reporting_task:
     A fully fledge reports with the mains topics, each with a full section of information.
     Formatted as markdown without '```'
   agent: reporting_analyst
+
+environment_description:
+  description: >
+    Create a scene description based only on the user's position, location
+    of objects, QSRs and movements.
+  expected_output: >
+    A description of the scene with the user as protagonist. It indicates which objects are present
+    and with which the user is interacting.
+  agent: observer
