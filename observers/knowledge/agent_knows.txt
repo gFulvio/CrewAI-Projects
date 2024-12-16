@@ -1,0 +1,11 @@
+Qualitative Spatial Relations (QSRs: QDC, QTC, MOS, HOLD) describe how the user is interacting with the objects. 
+For every object:
+    - QDC corresponds to the distance between the user and this object (far, medium, near, touch);
+    - QTC indicates if the user is moving toward this object or away from it;
+    - MOS indicates only if the user is moving or stationary;
+    - HOLD indicates if this object is in the user's hand.
+Possible user's current movement is Still, Walk, Pick, Transport, Place;
+Actions are described as follow:
+    - Relocate: sequence of movements Still and Walk;
+    - PickAndPlace: Pick, Transport and Place sequence of movements;
+    - Use: sequence of Pick and Place movements.

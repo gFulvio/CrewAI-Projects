@@ -17,7 +17,7 @@ def run():
     """
     inputs = {
         'scene': {
-            'user': {
+            'main character': {
                 'target': 'lost wallet',
                 'movement': 'Pick',
                 'action': 'Use'

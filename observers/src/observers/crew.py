@@ -7,15 +7,16 @@ from crewai_tools import FileReadTool
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
-file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/user_preference.txt'
+file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/agent_knows.txt'
+content = ''
 with open(file_path, "r", encoding="utf-8") as file:
     content = file.read()
 
-string_source = StringKnowledgeSource(
+string_knowledge_source = StringKnowledgeSource(
 	content=content,
 	chunk_size = 4000,
 	chunk_overlap = 200,
- 	metadata={"source": "user_preference.txt"}
+ 	metadata={"source": "agent_knows.txt"}
 )
 
 @CrewBase
@@ -58,6 +59,6 @@ class Observers():
 			tasks=self.tasks, # Automatically created by the @task decorator
 			process=Process.sequential,
 			verbose=True,
-			knowledge_sources=[string_source]
+			knowledge_sources=[string_knowledge_source]
 			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)

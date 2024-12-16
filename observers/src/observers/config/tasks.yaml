@@ -1,9 +1,7 @@
 environment_description:
   description: >
-    Create a scene description based only on {scene} 
+    Describe what is in the scene considering only {scene} and what the user is doing with the target object: {scene[main character][target]}.  
+    Consider also if there are other people in the scene related to the target object.
   expected_output: >
-    Describe the scene considering only {scene}.
-    Wrtite what the user is doing with a target object: {scene[user][target]}.  
-    Write whether there are other people in the scene. 
+     A single sentence describing the scene.
   agent: observer
-  tool: file_read_tool
