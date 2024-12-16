@@ -1,7 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
-from crewai_tools import FileReadTool
+from crewai_tools import JSONSearchTool
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -18,6 +18,8 @@ string_knowledge_source = StringKnowledgeSource(
 	chunk_overlap = 200,
  	metadata={"source": "agent_knows.txt"}
 )
+
+json_search_tool = JSONSearchTool(json_path='C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/moral_stories_full.json')
 
 @CrewBase
 class Observers():
@@ -37,6 +39,13 @@ class Observers():
 			config=self.agents_config['observer'],
 			verbose=True
 		)
+  
+	@agent
+	def moralist(self) -> Agent:
+		return Agent(
+			config=self.agents_config['moralist'],
+			verbose=True
+		)
 
 	# To learn more about structured task outputs, 
 	# task dependencies, and task callbacks, check out the documentation:
@@ -46,6 +55,12 @@ class Observers():
 	def environment_description(self) -> Task:
 		return Task(
 			config=self.tasks_config['environment_description'],
+		)
+  
+	@task
+	def moral_advice(self) -> Task:
+		return Task(
+			config=self.tasks_config['moral_advice'],
 		)
 
 	@crew

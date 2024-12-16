@@ -5,3 +5,10 @@ environment_description:
   expected_output: >
      A single sentence describing the scene.
   agent: observer
+
+moral_advice:
+  description: >
+    Create a moral advice based on your knowledge and on the context description. 
+  expected_output: >
+    A moral action and the related moral norm.
+  agent: moralist
