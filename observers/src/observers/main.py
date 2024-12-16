@@ -18,20 +18,17 @@ def run():
     inputs = {
         'scene': {
             'user': {
-                'position': '(0,0,0)',
-                'target': 'plate',
+                'target': 'lost wallet',
                 'movement': 'Pick',
                 'action': 'Use'
             },
-            'plate': {
-                'position': '(0.5, 0.6, 0.5)',
+            'lost wallet': {
                 'QDC': 'touch',
                 'QTC': 'stationary',
                 'MOS': 'stationary',
                 'HOLD': 'no'
             },
-            'glass': {
-                'position': '(2, 0.6, 2)',
+            'wallet owner': {
                 'QDC': 'far',
                 'QTC': 'stationary',
                 'MOS': 'stationary',

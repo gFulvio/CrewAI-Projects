@@ -1,4 +1,13 @@
-User name is John Doe.
-User is an AI Engineer.
-User is interested in AI Agents.
-User is based in San Francisco, California.
+Qualitative Spatial Relations (QSRs) describe how the user is interacting with the objects. 
+Each object has four QSRs: QDC, QTC, MOS, HOLD.
+Every object's QSRs are related to the user:
+    - QDC corresponds to the distance between the user and the object(far, medium, near, touch);
+    - QTC indicates whether the user is moving in the direction of the object or moving away from it;
+    - MOS indicates whether the user is moving or stationary;
+    - HOLD indicates whether the object is hold by the user.
+Combination of QSRs describe the user's current movement (Still, Walk, Pick, Transport, Place);
+Sequences of movements describe the user's current action.
+Possible action are:
+    - Relocate: sequence of movements Still and Walk;
+    - PickAndPlace: Pick, Transport and Place sequence of movements;
+    - Use: sequence of Pick and Place movements.

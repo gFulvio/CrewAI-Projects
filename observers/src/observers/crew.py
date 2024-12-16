@@ -1,9 +1,22 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
+from crewai_tools import FileReadTool
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+
+file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/user_preference.txt'
+with open(file_path, "r", encoding="utf-8") as file:
+    content = file.read()
+
+string_source = StringKnowledgeSource(
+	content=content,
+	chunk_size = 4000,
+	chunk_overlap = 200,
+ 	metadata={"source": "user_preference.txt"}
+)
 
 @CrewBase
 class Observers():
@@ -45,5 +58,6 @@ class Observers():
 			tasks=self.tasks, # Automatically created by the @task decorator
 			process=Process.sequential,
 			verbose=True,
+			knowledge_sources=[string_source]
 			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)
