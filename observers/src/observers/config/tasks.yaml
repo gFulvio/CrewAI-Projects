@@ -1,6 +1,6 @@
 environment_description:
   description: >
-    Describe what is in the scene considering only {scene} and what the user is doing with the target object: {scene[main character][target]}.  
+    Describe what is in the scene considering only {scene} and what the main character is doing with the target object: {scene[main character][target]}.  
     Consider also if there are other people in the scene related to the target object.
   expected_output: >
      A single sentence describing the scene.

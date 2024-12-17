@@ -7,20 +7,6 @@ from crewai_tools import JSONSearchTool
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
-file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/agent_knows.txt'
-content = ''
-with open(file_path, "r", encoding="utf-8") as file:
-    content = file.read()
-
-string_knowledge_source = StringKnowledgeSource(
-	content=content,
-	chunk_size = 4000,
-	chunk_overlap = 200,
- 	metadata={"source": "agent_knows.txt"}
-)
-
-json_search_tool = JSONSearchTool(json_path='C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/moral_stories_full.json')
-
 @CrewBase
 class Observers():
 	"""Observers crew"""
@@ -33,10 +19,25 @@ class Observers():
 
 	# If you would like to add tools to your agents, you can learn more about it here:
 	# https://docs.crewai.com/concepts/agents#agent-tools
+	file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/agent_knows.txt'
+	content = ''
+	with open(file_path, "r", encoding="utf-8") as file:
+		content = file.read()
+
+	string_knowledge_source = StringKnowledgeSource(
+		content=content,
+		chunk_size = 4000,
+		chunk_overlap = 200,
+ 		metadata={"source": "agent_knows.txt"}
+	)
+ 
+	json_search_tool = JSONSearchTool(json_path='C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/moral_stories_full.json')
+ 
 	@agent
 	def observer(self) -> Agent:
 		return Agent(
 			config=self.agents_config['observer'],
+			knowledge_sources=[self.string_knowledge_source],
 			verbose=True
 		)
   
@@ -44,6 +45,7 @@ class Observers():
 	def moralist(self) -> Agent:
 		return Agent(
 			config=self.agents_config['moralist'],
+			tools=[self.json_search_tool],
 			verbose=True
 		)
 
@@ -73,7 +75,6 @@ class Observers():
 			agents=self.agents, # Automatically created by the @agent decorator
 			tasks=self.tasks, # Automatically created by the @task decorator
 			process=Process.sequential,
-			verbose=True,
-			knowledge_sources=[string_knowledge_source]
+			verbose=True
 			# process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
 		)
