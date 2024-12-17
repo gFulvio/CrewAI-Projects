@@ -19,8 +19,7 @@ class Observers():
 
 	# If you would like to add tools to your agents, you can learn more about it here:
 	# https://docs.crewai.com/concepts/agents#agent-tools
-	file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/agent_knows.txt'
-	content = ''
+	file_path = 'C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/qsrs_knowledge.txt'
 	with open(file_path, "r", encoding="utf-8") as file:
 		content = file.read()
 
@@ -28,9 +27,9 @@ class Observers():
 		content=content,
 		chunk_size = 4000,
 		chunk_overlap = 200,
- 		metadata={"source": "agent_knows.txt"}
+ 		metadata={"source": "qsrs_knowledge.txt"}
 	)
- 
+	
 	json_search_tool = JSONSearchTool(json_path='C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/moral_stories_full.json')
  
 	@agent
