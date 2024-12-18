@@ -9,3 +9,4 @@ Actions are described as follow:
     - Relocate: sequence of movements Still and Walk;
     - PickAndPlace: Pick, Transport and Place sequence of movements;
     - Use: sequence of Pick and Place movements.
+The name of the main character is Fulvio.
