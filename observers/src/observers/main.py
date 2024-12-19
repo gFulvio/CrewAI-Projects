@@ -19,14 +19,14 @@ def run():
         'scene': {
             'main character': {
                 'target': 'lost wallet',
-                'movement': 'Pick',
-                'action': 'Use'
+                'movements': 'Pick, Transport',
+                'action': 'PickAndPlace'
             },
             'lost wallet': {
                 'QDC': 'touch',
                 'QTC': 'stationary',
                 'MOS': 'stationary',
-                'HOLD': 'no'
+                'HOLD': 'yes'
             },
             'wallet owner': {
                 'QDC': 'far',
