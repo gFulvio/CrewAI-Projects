@@ -1,6 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.knowledge.source.string_knowledge_source import StringKnowledgeSource
+#from crewai.knowledge.source.json_knowledge_source import JSONKnowledgeSource
 from crewai_tools import JSONSearchTool
 
 # If you want to run a snippet of code before or after the crew starts, 
@@ -29,9 +30,19 @@ class Observers():
 		chunk_overlap = 200,
  		metadata={"source": "qsrs_knowledge.txt"}
 	)
-	
+ 
+	# Restricting search to a specific JSON file
+	# Use this initialization method when you want to limit the search scope to a specific JSON file.
 	json_search_tool = JSONSearchTool(json_path='C:/Users/gfulv/Documents/GitHub/CrewAI-Projects/observers/knowledge/moral_stories_full.json')
  
+	# Create a JSON knowledge source
+	#json_source = JSONKnowledgeSource(
+	#	file_path='moral_stories_full.json',
+  	#	chunk_size = 4000,
+	#	chunk_overlap = 200,
+	#	metadata={"source": "moral_stories_full.json"}
+	#)
+	
 	@agent
 	def observer(self) -> Agent:
 		return Agent(
@@ -46,6 +57,7 @@ class Observers():
 			config=self.agents_config['moralist'],
 			tools=[self.json_search_tool],
 			verbose=True
+   			#knowledge_sources=[self.json_source]
 		)
 
 	# To learn more about structured task outputs, 
